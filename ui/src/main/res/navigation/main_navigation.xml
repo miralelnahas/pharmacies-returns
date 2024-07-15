@@ -6,7 +6,15 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.yomicepa.ui.views.LoginFragment"
-        android:label="LoginFragment" />
+        android:name="com.yomicepa.ui.login.LoginFragment"
+        android:label="LoginFragment" >
+        <action android:id="@+id/action_login_to_return_requests"
+            app:destination="@id/returnRequestsFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/returnRequestsFragment"
+        android:name="com.yomicepa.ui.returnRequests.ReturnRequestsFragment"
+        android:label="ReturnRequestsFragment"/>
 
 </navigation>

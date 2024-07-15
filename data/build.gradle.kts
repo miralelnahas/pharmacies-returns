@@ -13,10 +13,10 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
+            buildConfigField("String", "BASE_URL", "\"https://portal-test.rxmaxreturns.com/rxmax/\"")
         }
         release {
-            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
+            buildConfigField("String", "BASE_URL", "\"https://portal-test.rxmaxreturns.com/rxmax/\"")
         }
     }
 
@@ -30,6 +30,9 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
+
+    implementation(libs.datastore.preferences)
+    implementation(libs.datastore.preferences.core)
 
 
     implementation(libs.hilt.android)

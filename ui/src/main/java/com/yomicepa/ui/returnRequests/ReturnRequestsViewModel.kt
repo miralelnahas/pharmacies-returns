@@ -1,9 +1,9 @@
-package com.yomicepa.ui.viewModels
+package com.yomicepa.ui.returnRequests
 
 import com.yomicepa.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor() : BaseViewModel() {
+class ReturnRequestsViewModel @Inject constructor() : BaseViewModel() {
 }
