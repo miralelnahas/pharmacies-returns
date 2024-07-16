@@ -11,16 +11,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="10dp">
+        android:paddingTop="@dimen/size_10">
 
 
         <TextView
             android:id="@+id/tvTitle"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="Return Requests"
-            android:textSize="24sp"
+            android:layout_margin="@dimen/size_10"
+            android:text="@string/return_requests"
+            android:textSize="@dimen/text_size_24"
             app:layout_constraintEnd_toStartOf="@id/buttonLogout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +30,7 @@
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Logout"
+            android:text="@string/logout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:onClick="@{()->vm.onLogoutClick()}"/>
@@ -38,19 +38,19 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvReturnRequests"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/size_0"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/buttonCreate"
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="@dimen/size_10"/>
 
         <Button
             android:id="@+id/buttonCreate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="@dimen/size_20"
             android:onClick="@{()->vm.onCreateReturnRequestsClick()}"
-            android:text="Create Return Request"
+            android:text="@string/create_return_request"
             android:textAllCaps="true"
             app:layout_constraintBottom_toBottomOf="parent" />
 
@@ -67,7 +67,7 @@
         <include
             layout="@layout/layout_empty_return_requests"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/size_0"
             app:goneUnless="@{vm.showEmptyView}"
             app:layout_constraintBottom_toTopOf="@id/buttonCreate"
             app:layout_constraintTop_toTopOf="parent" />

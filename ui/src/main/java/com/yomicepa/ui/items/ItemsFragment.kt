@@ -15,26 +15,33 @@ class ItemsFragment : BaseFragment<FragmentItemsBinding>(R.layout.fragment_items
 
     override fun initViews() {
         super.initViews()
-        vb.rvItems.adapter =
-            ItemAdapter(
-                editCallback = { item -> onEditClick(item) },
-                deleteCallback = { id -> onDeleteClick(id) })
+        vb.rvItems.adapter = ItemAdapter(editCallback = { item -> onEditClick(item) },
+            deleteCallback = { id -> onDeleteClick(id) })
     }
 
     private fun onDeleteClick(id: Int) {
-        showConfirmationDialog("Are you sure you want to delete this item ?", "Delete", "Cancel", {
-            vm.deleteItem(id)
-        }, {})
+        showConfirmationDialog(getString(R.string.confirmation_delete),
+            getString(R.string.delete),
+            getString(
+                R.string.cancel
+            ),
+            {
+                vm.deleteItem(id)
+            },
+            {})
     }
 
     private fun onEditClick(item: Item) {
         val view = layoutInflater.inflate(R.layout.layout_edit_item, null)
         val editTextDescription = view.findViewById<EditText>(R.id.editText)
         editTextDescription.setText(item.description)
-        MaterialAlertDialogBuilder(requireContext()).setTitle("Edit Item")
+        MaterialAlertDialogBuilder(requireContext()).setTitle(getString(R.string.edit_item))
             .setView(view).setPositiveButton(
-                "Update"
-            ) { _, _ -> vm.editItem(item, editTextDescription.text.toString()) }
-            .setNegativeButton("Cancel", null).show()
+                getString(R.string.update)
+            ) { _, _ -> vm.editItem(item, editTextDescription.text.toString()) }.setNegativeButton(
+                getString(
+                    R.string.cancel
+                ), null
+            ).show()
     }
 }

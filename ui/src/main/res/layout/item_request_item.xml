@@ -11,24 +11,24 @@
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:layout_margin="@dimen/size_10">
 
         <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp">
+            android:padding="@dimen/size_10">
 
             <TextView
                 android:id="@+id/tvNdc"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
                 android:text="@{vm.ndc}"
-                android:textSize="24sp"
+                android:textSize="@dimen/text_size_24"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/tvQuantity"
                 app:layout_constraintHorizontal_bias="0"
-                android:layout_marginEnd="4dp"/>
+                android:layout_marginEnd="@dimen/size_4"/>
 
             <TextView
                 android:id="@+id/tvManufacturer"
@@ -43,7 +43,7 @@
                 android:id="@+id/tvQuantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="6dp"
+                android:padding="@dimen/size_6"
                 android:text="@{vm.partialQuantity +'/'+ vm.fullQuantity}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -52,7 +52,7 @@
                 android:id="@+id/buttonEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edit"
+                android:text="@string/edit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvQuantity" />
 
@@ -61,7 +61,7 @@
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Delete"
+                android:text="@string/delete"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/buttonEdit" />
 

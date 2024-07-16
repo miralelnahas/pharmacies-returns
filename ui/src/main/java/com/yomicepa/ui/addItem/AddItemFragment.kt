@@ -17,7 +17,7 @@ class AddItemFragment : BaseFragment<FragmentAddItemBinding>(R.layout.fragment_a
         observe(vm.event) {
             when (it) {
                 AddItemEvent.ItemAddedSuccessfully -> {
-                    showSnackBar("Item Added Successfully")
+                    showSnackBar(getString(R.string.add_item_success))
                 }
 
                 is AddItemEvent.ItemsClicked -> {

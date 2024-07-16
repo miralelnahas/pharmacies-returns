@@ -23,6 +23,7 @@ class ReturnRequestsFragment :
     override fun initViews() {
         super.initViews()
         vb.rvReturnRequests.adapter = adapter
+
         lifecycleScope.launch(Dispatchers.Main) {
             adapter.loadStateFlow.collectLatest { loadStates ->
                 if (loadStates.refresh is LoadState.Loading) {

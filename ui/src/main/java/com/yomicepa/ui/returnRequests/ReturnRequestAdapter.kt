@@ -5,7 +5,6 @@ import androidx.paging.PagingDataAdapter
 import com.yomicepa.domain.models.ReturnRequest
 import com.yomicepa.ui.R
 import com.yomicepa.ui.base.BaseViewHolder
-import com.yomicepa.ui.databinding.ItemReturnRequestBinding
 
 class ReturnRequestAdapter(private val itemClick: (String) -> Unit) :
     PagingDataAdapter<ReturnRequest, BaseViewHolder>(ReturnRequestDiffCallback) {

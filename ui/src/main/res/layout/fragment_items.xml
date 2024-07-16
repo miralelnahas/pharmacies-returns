@@ -16,17 +16,17 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="Items"
-            android:textSize="24sp"
+            android:layout_margin="@dimen/size_10"
+            android:text="@string/items"
+            android:textSize="@dimen/text_size_24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvItems"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="@dimen/size_0"
+            android:layout_marginTop="@dimen/size_10"
             app:items="@{vm.items}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -15,7 +14,6 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.yomicepa.ui.BR
 import com.yomicepa.ui.MainActivity
-import com.yomicepa.ui.R
 import com.yomicepa.ui.utils.observe
 
 abstract class BaseFragment<T : ViewDataBinding>(@LayoutRes private val contentLayoutId: Int) :

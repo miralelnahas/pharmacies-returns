@@ -16,14 +16,14 @@
         <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="20dp">
+            android:padding="@dimen/size_20">
 
             <TextView
                 android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Create Return Request"
-                android:textSize="24sp"
+                android:text="@string/create_return_request"
+                android:textSize="@dimen/text_size_24"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,9 +31,9 @@
                 android:id="@+id/tvServiceTypeTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Service Type"
-                android:textSize="18sp"
+                android:layout_marginTop="@dimen/size_20"
+                android:text="@string/service_type"
+                android:textSize="@dimen/text_size_18"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
@@ -42,14 +42,14 @@
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="@dimen/size_6"
                 app:layout_constraintTop_toBottomOf="@id/tvServiceTypeTitle">
 
                 <AutoCompleteTextView
                     android:id="@+id/tvServiceType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Choose a service type"
+                    android:hint="@string/choose_a_service_type"
                     android:inputType="none"
                     app:simpleItems="@array/service_type" />
 
@@ -59,9 +59,9 @@
                 android:id="@+id/tvWholesalerTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Wholesaler"
-                android:textSize="18sp"
+                android:layout_marginTop="@dimen/size_20"
+                android:text="@string/wholesaler"
+                android:textSize="@dimen/text_size_18"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ilServiceType" />
 
@@ -70,14 +70,14 @@
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="@dimen/size_6"
                 app:layout_constraintTop_toBottomOf="@id/tvWholesalerTitle">
 
                 <AutoCompleteTextView
                     android:id="@+id/tvWholesaler"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Choose a wholesaler"
+                    android:hint="@string/choose_a_wholesaler"
                     android:inputType="none" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:onClick="@{()-> vm.onCreateClick()}"
-                android:text="Create"
+                android:text="@string/create"
                 android:textAllCaps="true"
                 app:layout_constraintTop_toBottomOf="@id/ilWholesaler" />
 
