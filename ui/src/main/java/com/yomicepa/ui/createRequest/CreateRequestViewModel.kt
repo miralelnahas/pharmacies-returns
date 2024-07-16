@@ -2,6 +2,7 @@ package com.yomicepa.ui.createRequest
 
 import com.yomicepa.domain.models.ServiceType
 import com.yomicepa.domain.usecases.CreateRequestUseCase
+import com.yomicepa.domain.usecases.IsNetworkConnectedUseCase
 import com.yomicepa.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -10,8 +11,10 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class CreateRequestViewModel @Inject constructor(private val createRequestUseCase: CreateRequestUseCase) :
-    BaseViewModel() {
+class CreateRequestViewModel @Inject constructor(
+    private val createRequestUseCase: CreateRequestUseCase,
+    isNetworkConnectedUseCase: IsNetworkConnectedUseCase
+) : BaseViewModel(isNetworkConnectedUseCase) {
     private val _event = Channel<CreateRequestEvent>(Channel.BUFFERED)
     val event = _event.receiveAsFlow()
 

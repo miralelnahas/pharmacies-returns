@@ -10,7 +10,8 @@
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
@@ -48,9 +49,9 @@
                     android:id="@+id/tvServiceType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="none"
                     android:hint="Choose a service type"
-                    app:simpleItems="@array/service_type"/>
+                    android:inputType="none"
+                    app:simpleItems="@array/service_type" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,8 +77,8 @@
                     android:id="@+id/tvWholesaler"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="none"
-                    android:hint="Choose a wholesaler"/>
+                    android:hint="Choose a wholesaler"
+                    android:inputType="none" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,7 +95,14 @@
 
             <include
                 layout="@layout/layout_loader"
-                app:goneUnless="@{vm.showLoader}"/>
+                app:goneUnless="@{vm.showLoader}" />
+
+
+            <include
+                layout="@layout/layout_no_connection"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:vm="@{vm}" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

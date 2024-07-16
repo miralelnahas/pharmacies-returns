@@ -5,6 +5,7 @@ import com.yomicepa.domain.models.Item
 import com.yomicepa.domain.usecases.DeleteItemUseCase
 import com.yomicepa.domain.usecases.EditItemUseCase
 import com.yomicepa.domain.usecases.GetItemsUseCase
+import com.yomicepa.domain.usecases.IsNetworkConnectedUseCase
 import com.yomicepa.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,9 +17,9 @@ class ItemsViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val getItemsUseCase: GetItemsUseCase,
     private val deleteItemUseCase: DeleteItemUseCase,
-    private val editItemUseCase: EditItemUseCase
-) :
-    BaseViewModel() {
+    private val editItemUseCase: EditItemUseCase,
+    isNetworkConnectedUseCase : IsNetworkConnectedUseCase
+) : BaseViewModel(isNetworkConnectedUseCase) {
 
     private val requestId = savedStateHandle[ARG_ID] ?: 0
 

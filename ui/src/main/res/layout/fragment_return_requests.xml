@@ -32,7 +32,13 @@
 
         <include
             layout="@layout/layout_loader"
-            app:goneUnless="@{vm.showLoader}"/>
+            app:goneUnless="@{vm.showLoader}" />
+
+        <include
+            layout="@layout/layout_no_connection"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:vm="@{vm}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

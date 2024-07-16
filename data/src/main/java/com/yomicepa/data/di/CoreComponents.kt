@@ -1,8 +1,10 @@
-package com.areeb.data.di
+package com.yomicepa.data.di
 
 import com.yomicepa.data.datasources.LoginDataSourceImpl
 import com.yomicepa.data.datasources.ReturnRequestsDataSourceImpl
 import com.yomicepa.data.datasources.UserLocalDataSourceImpl
+import com.yomicepa.data.managers.ConnectionManager
+import com.yomicepa.data.managers.ConnectionManagerImpl
 import com.yomicepa.data.repositories.login.LoginDataSource
 import com.yomicepa.data.repositories.login.LoginRepository
 import com.yomicepa.data.repositories.login.LoginRepositoryImpl
@@ -38,5 +40,8 @@ interface CoreComponents {
 
     @Binds
     fun returnRequestsDs(returnRequestsDataSourceImpl: ReturnRequestsDataSourceImpl): ReturnRequestsDataSource
+
+    @Binds
+    fun connectionManager(connectionManagerImpl: ConnectionManagerImpl): ConnectionManager
 
 }

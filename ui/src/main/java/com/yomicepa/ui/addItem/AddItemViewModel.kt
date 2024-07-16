@@ -2,6 +2,7 @@ package com.yomicepa.ui.addItem
 
 import androidx.lifecycle.SavedStateHandle
 import com.yomicepa.domain.usecases.AddItemUseCase
+import com.yomicepa.domain.usecases.IsNetworkConnectedUseCase
 import com.yomicepa.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -12,8 +13,9 @@ import javax.inject.Inject
 @HiltViewModel
 class AddItemViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val addItemUseCase: AddItemUseCase
-) : BaseViewModel() {
+    private val addItemUseCase: AddItemUseCase,
+    isNetworkConnectedUseCase : IsNetworkConnectedUseCase
+) : BaseViewModel(isNetworkConnectedUseCase) {
     private val requestId = savedStateHandle[ARG_ID] ?: 0
 
     private val _event = Channel<AddItemEvent>(Channel.BUFFERED)

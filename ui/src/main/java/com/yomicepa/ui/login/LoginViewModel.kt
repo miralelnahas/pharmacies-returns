@@ -1,5 +1,6 @@
 package com.yomicepa.ui.login
 
+import com.yomicepa.domain.usecases.IsNetworkConnectedUseCase
 import com.yomicepa.domain.usecases.IsUserLoggedInUseCase
 import com.yomicepa.domain.usecases.LoginUseCase
 import com.yomicepa.ui.base.BaseViewModel
@@ -12,8 +13,9 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
-    private val isUserLoggedInUseCase: IsUserLoggedInUseCase
-) : BaseViewModel() {
+    private val isUserLoggedInUseCase: IsUserLoggedInUseCase,
+    isNetworkConnectedUseCase : IsNetworkConnectedUseCase
+) : BaseViewModel(isNetworkConnectedUseCase) {
     private val _event = Channel<LoginEvent>(Channel.BUFFERED)
     val event = _event.receiveAsFlow()
 

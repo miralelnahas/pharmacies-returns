@@ -1,4 +1,4 @@
-package com.areeb.data.di
+package com.yomicepa.data.di
 
 import com.google.gson.Gson
 import com.yomicepa.data.BuildConfig

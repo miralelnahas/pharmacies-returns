@@ -10,11 +10,13 @@
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -138,25 +140,30 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
+                    android:onClick="@{()->vm.onAddItemClicked()}"
                     android:text="Add Item"
-                    android:textAllCaps="true"
-                    android:onClick="@{()->vm.onAddItemClicked()}"/>
+                    android:textAllCaps="true" />
+
                 <Button
                     style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    android:onClick="@{()->vm.onItemsClicked()}"
                     android:text="Go to Items"
-                    android:textAllCaps="true"
-                    android:onClick="@{()->vm.onItemsClicked()}"/>
+                    android:textAllCaps="true" />
 
             </LinearLayout>
 
             <include
                 layout="@layout/layout_loader"
-                app:goneUnless="@{vm.showLoader}"/>
+                app:goneUnless="@{vm.showLoader}" />
+
+            <include
+                layout="@layout/layout_no_connection"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:vm="@{vm}" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </ScrollView>
 </layout>

@@ -16,11 +16,11 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:text="Items"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="10dp"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvItems"
@@ -34,7 +34,13 @@
 
         <include
             layout="@layout/layout_loader"
-            app:goneUnless="@{vm.showLoader}"/>
+            app:goneUnless="@{vm.showLoader}" />
+
+        <include
+            layout="@layout/layout_no_connection"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:vm="@{vm}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

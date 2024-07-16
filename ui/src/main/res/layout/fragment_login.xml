@@ -10,7 +10,8 @@
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
@@ -40,7 +41,7 @@
                     android:hint="Username"
                     android:imeOptions="actionNext"
                     android:inputType="text"
-                    android:text="@={vm.username}"/>
+                    android:text="@={vm.username}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -56,21 +57,27 @@
                     android:hint="Password"
                     android:imeOptions="actionGo"
                     android:inputType="textPassword"
-                    android:text="@={vm.password}"/>
+                    android:text="@={vm.password}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="70dp"
+                android:onClick="@{()->vm.onLoginClick()}"
                 android:text="Login"
                 android:textAllCaps="true"
-                app:layout_constraintTop_toBottomOf="@id/ilPassword"
-                android:onClick="@{()->vm.onLoginClick()}"/>
+                app:layout_constraintTop_toBottomOf="@id/ilPassword" />
 
             <include
                 layout="@layout/layout_loader"
-                app:goneUnless="@{vm.showLoader}"/>
+                app:goneUnless="@{vm.showLoader}" />
+
+            <include
+                layout="@layout/layout_no_connection"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:vm="@{vm}" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
