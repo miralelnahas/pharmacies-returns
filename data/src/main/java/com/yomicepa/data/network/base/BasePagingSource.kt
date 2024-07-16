@@ -23,7 +23,7 @@ abstract class BasePagingSource<T : Any> : PagingSource<Int, T>() {
 
 
     companion object {
-        const val LIST_PAGE_SIZE = 20
+        const val LIST_PAGE_SIZE = 15
         const val LIST_STARTING_INDEX = 1
     }
 }
