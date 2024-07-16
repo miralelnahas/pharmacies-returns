@@ -32,5 +32,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
+        <include
+            layout="@layout/layout_loader"
+            app:goneUnless="@{vm.showLoader}"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

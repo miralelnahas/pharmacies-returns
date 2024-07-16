@@ -1,6 +1,5 @@
 package com.yomicepa.ui.createRequest
 
-import androidx.lifecycle.viewModelScope
 import com.yomicepa.domain.models.ServiceType
 import com.yomicepa.domain.usecases.CreateRequestUseCase
 import com.yomicepa.ui.base.BaseViewModel
@@ -8,7 +7,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,15 +22,12 @@ class CreateRequestViewModel @Inject constructor(private val createRequestUseCas
     }
 
     fun onCreateClick() {
-        viewModelScope.launch {
+        launchRequest({
             //TODO: handle wholesale
-            createRequestUseCase(_serviceType.value, 4).apply {
-                onSuccess {
-                    sendEvent(_event, CreateRequestEvent.CreateRequestSuccess(it))
-                }
-                //TODO: Handle failure and empty service type field
-            }
-        }
-
+            createRequestUseCase(_serviceType.value, 4)
+        }, {
+            sendEvent(_event, CreateRequestEvent.CreateRequestSuccess(it))
+            //TODO: Handle failure and empty service type field
+        })
     }
 }

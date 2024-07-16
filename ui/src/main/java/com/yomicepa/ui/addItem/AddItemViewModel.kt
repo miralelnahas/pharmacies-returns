@@ -1,15 +1,12 @@
 package com.yomicepa.ui.addItem
 
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.viewModelScope
 import com.yomicepa.domain.usecases.AddItemUseCase
 import com.yomicepa.ui.base.BaseViewModel
-import com.yomicepa.ui.createRequest.CreateRequestEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -66,7 +63,7 @@ class AddItemViewModel @Inject constructor(
 
 
     fun onAddItemClicked() {
-        viewModelScope.launch {
+        launchRequest({
             addItemUseCase(
                 requestId,
                 _ndc.value,
@@ -76,14 +73,12 @@ class AddItemViewModel @Inject constructor(
                 _partialQuantity.value,
                 _expirationDate.value,
                 _lotNumber.value
-            ).apply {
-                onSuccess {
-                    clearFields()
-                    sendEvent(_event, AddItemEvent.ItemAddedSuccessfully)
-                }
-                //TODO: handle errors and empty fields
-            }
-        }
+            )
+        }, {
+            clearFields()
+            sendEvent(_event, AddItemEvent.ItemAddedSuccessfully)
+            //TODO: handle errors and empty fields
+        })
     }
 
     private fun clearFields() {

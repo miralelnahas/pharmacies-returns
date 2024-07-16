@@ -9,6 +9,7 @@ import com.yomicepa.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -25,6 +26,7 @@ class ReturnRequestsViewModel @Inject constructor(private val getReturnRequestsU
     init {
         viewModelScope.launch {
             returnRequests = getReturnRequestsUseCase().cachedIn(viewModelScope)
+
         }
     }
 

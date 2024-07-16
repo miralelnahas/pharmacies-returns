@@ -1,5 +1,6 @@
 package com.yomicepa.ui.utils
 
+import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -20,5 +21,11 @@ object BindingAdapters {
         } else {
             adapter?.notifyDataSetChanged()
         }
+    }
+
+    @JvmStatic
+    @BindingAdapter("app:goneUnless")
+    fun View.goneUnless(show: Boolean) {
+        visibility = if (show) View.VISIBLE else View.GONE
     }
 }

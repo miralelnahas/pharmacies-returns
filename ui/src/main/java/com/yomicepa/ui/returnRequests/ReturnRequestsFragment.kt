@@ -1,11 +1,16 @@
 package com.yomicepa.ui.returnRequests
 
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import com.yomicepa.ui.R
 import com.yomicepa.ui.base.BaseFragment
 import com.yomicepa.ui.databinding.FragmentReturnRequestsBinding
 import com.yomicepa.ui.utils.observe
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ReturnRequestsFragment :
@@ -18,6 +23,23 @@ class ReturnRequestsFragment :
     override fun initViews() {
         super.initViews()
         vb.rvReturnRequests.adapter = adapter
+        lifecycleScope.launch(Dispatchers.Main) {
+            adapter.loadStateFlow.collectLatest { loadStates ->
+                if (loadStates.refresh is LoadState.Loading) {
+                    vm.showLoader(true)
+                } else {
+                    vm.showLoader(false)
+                    if (loadStates.refresh is LoadState.Error) {
+                        //TODO: handle empty views
+                    }
+//                    if ( adapter.itemCount < 1){
+//                        binding.clNoConsult.visibility = View.VISIBLE
+//                    }else{
+//                        binding.clNoConsult.visibility = View.GONE
+//                    }
+                }
+            }
+        }
     }
 
     override fun setupObservers() {

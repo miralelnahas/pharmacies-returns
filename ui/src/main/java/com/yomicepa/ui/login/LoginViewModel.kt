@@ -1,6 +1,5 @@
 package com.yomicepa.ui.login
 
-import androidx.lifecycle.viewModelScope
 import com.yomicepa.domain.usecases.IsUserLoggedInUseCase
 import com.yomicepa.domain.usecases.LoginUseCase
 import com.yomicepa.ui.base.BaseViewModel
@@ -8,7 +7,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -33,16 +31,13 @@ class LoginViewModel @Inject constructor(
     }
 
     fun onLoginClick() {
-        viewModelScope.launch {
-            loginUseCase(_username.value, _password.value).apply {
-                onSuccess {
-                    if (it)
-                        sendEvent(_event, LoginEvent.LoginSuccess)
-                    else {
-                    }
-                    //TODO: implement errors
-                }
+        launchRequest({ loginUseCase(_username.value, _password.value) }, {
+            if (it)
+                sendEvent(_event, LoginEvent.LoginSuccess)
+            else {
+                //TODO: implement errors
             }
-        }
+        })
+
     }
 }

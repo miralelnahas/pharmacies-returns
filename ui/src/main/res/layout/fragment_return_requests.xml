@@ -30,5 +30,9 @@
             android:textAllCaps="true"
             app:layout_constraintBottom_toBottomOf="parent" />
 
+        <include
+            layout="@layout/layout_loader"
+            app:goneUnless="@{vm.showLoader}"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
