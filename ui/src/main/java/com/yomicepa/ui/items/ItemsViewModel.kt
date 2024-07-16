@@ -18,7 +18,7 @@ class ItemsViewModel @Inject constructor(
     private val getItemsUseCase: GetItemsUseCase,
     private val deleteItemUseCase: DeleteItemUseCase,
     private val editItemUseCase: EditItemUseCase,
-    isNetworkConnectedUseCase : IsNetworkConnectedUseCase
+    isNetworkConnectedUseCase: IsNetworkConnectedUseCase
 ) : BaseViewModel(isNetworkConnectedUseCase) {
 
     private val requestId = savedStateHandle[ARG_ID] ?: 0
@@ -34,7 +34,6 @@ class ItemsViewModel @Inject constructor(
         launchRequest({
             getItemsUseCase(requestId)
         }, {
-            //TODO: handle empty views
             _items.value = it
         })
     }
@@ -43,7 +42,6 @@ class ItemsViewModel @Inject constructor(
         launchRequest({
             deleteItemUseCase(requestId, id)
         }, {
-            //TODO: handle errors
             getItems()
         })
     }
@@ -54,7 +52,6 @@ class ItemsViewModel @Inject constructor(
         }, {
             getItems()
         }
-            //TODO: handle on failure
         )
     }
 

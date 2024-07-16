@@ -14,7 +14,7 @@ import javax.inject.Inject
 class AddItemViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val addItemUseCase: AddItemUseCase,
-    isNetworkConnectedUseCase : IsNetworkConnectedUseCase
+    isNetworkConnectedUseCase: IsNetworkConnectedUseCase
 ) : BaseViewModel(isNetworkConnectedUseCase) {
     private val requestId = savedStateHandle[ARG_ID] ?: 0
 
@@ -51,10 +51,16 @@ class AddItemViewModel @Inject constructor(
         _partialQuantity.value = partialQuantity
     }
 
-    private val _expirationDate = MutableStateFlow("")
-    fun getExpirationDate() = _expirationDate
-    fun setExpirationDate(expirationDate: String) {
-        _expirationDate.value = expirationDate
+    private val _expirationYear = MutableStateFlow("")
+    fun getExpirationYear() = _expirationYear
+    fun setExpirationYear(expirationYear: String) {
+        _expirationYear.value = expirationYear
+    }
+
+    private val _expirationMonth = MutableStateFlow("")
+    fun getExpirationMonth() = _expirationMonth
+    fun setExpirationMonth(expirationMonth: String) {
+        _expirationMonth.value = expirationMonth
     }
 
     private val _lotNumber = MutableStateFlow("")
@@ -65,31 +71,35 @@ class AddItemViewModel @Inject constructor(
 
 
     fun onAddItemClicked() {
-        launchRequest({
-            addItemUseCase(
-                requestId,
-                _ndc.value,
-                _description.value,
-                _manufacturer.value,
-                _fullQuantity.value,
-                _partialQuantity.value,
-                _expirationDate.value,
-                _lotNumber.value
-            )
-        }, {
-            clearFields()
-            sendEvent(_event, AddItemEvent.ItemAddedSuccessfully)
-            //TODO: handle errors and empty fields
-        })
+        sendEvent(_event, AddItemEvent.ClearErrors)
+        if (getExpirationYear().value.isNotEmpty() && getExpirationMonth().value.isNotEmpty()) {
+            launchRequest({
+                addItemUseCase(
+                    requestId,
+                    _ndc.value,
+                    _description.value,
+                    _manufacturer.value,
+                    _fullQuantity.value,
+                    _partialQuantity.value,
+                    "${_expirationYear.value}-${_expirationMonth.value}",
+                    _lotNumber.value
+                )
+            }, {
+                clearFields()
+                sendEvent(_event, AddItemEvent.ItemAddedSuccessfully)
+            })
+        } else {
+            sendEvent(_event, AddItemEvent.HandleEmptyErrors)
+        }
     }
 
     private fun clearFields() {
-        //TODO: clear errors
         _description.value = ""
         _manufacturer.value = ""
         _fullQuantity.value = ""
         _partialQuantity.value = ""
-        _expirationDate.value = ""
+        _expirationYear.value = ""
+        _expirationMonth.value = ""
         _lotNumber.value = ""
     }
 

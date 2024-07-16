@@ -37,8 +37,12 @@
     <string name="incorrect_username_or_password">Incorrect username or password</string>
     <string name="error_empty_service_type">Please select a service type</string>
     <string name="error_general">Something went wrong, Please try again.</string>
+    <string name="expiration_year">Expiration Year</string>
+    <string name="expiration_month">Expiration Month</string>
+    <string name="error_empty_expiration_date">Please provide Expiration Date</string>
     <string-array name="service_type">
         <item>Express Service</item>
         <item>Full Service</item>
     </string-array>
+    <string name="items_count">%1$s items</string>
 </resources>

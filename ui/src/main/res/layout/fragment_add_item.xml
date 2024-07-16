@@ -106,20 +106,46 @@
                         android:text="@={vm.partialQuantity}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/ilExpirationDate"
+                <LinearLayout
+                    android:id="@+id/layoutExpirationDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_10">
 
-                    <EditText
-                        android:layout_width="match_parent"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/ilExpirationYear"
+                        android:layout_width="@dimen/size_0"
                         android:layout_height="wrap_content"
-                        android:hint="@string/expiration_date"
-                        android:imeOptions="actionNext"
-                        android:inputType="date"
-                        android:text="@={vm.expirationDate}" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_marginTop="@dimen/size_10"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/expiration_year"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:text="@={vm.expirationYear}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/ilExpirationMonth"
+                        android:layout_width="@dimen/size_0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/size_6"
+                        android:layout_marginTop="@dimen/size_10"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/expiration_month"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:text="@={vm.expirationMonth}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/ilLotNumber"

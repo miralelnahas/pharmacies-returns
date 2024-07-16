@@ -10,8 +10,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class AddItemFragment : BaseFragment<FragmentAddItemBinding>(R.layout.fragment_add_item) {
     override val vm: AddItemViewModel by viewModels()
-    //TODO: ADD date picker
-
     override fun setupObservers() {
         super.setupObservers()
         observe(vm.event) {
@@ -22,6 +20,18 @@ class AddItemFragment : BaseFragment<FragmentAddItemBinding>(R.layout.fragment_a
 
                 is AddItemEvent.ItemsClicked -> {
                     navigateTo(AddItemFragmentDirections.actionAddItemToItems(it.requestId))
+                }
+
+                AddItemEvent.HandleEmptyErrors -> {
+                    if (vm.getExpirationMonth().value.isEmpty())
+                        vb.ilExpirationMonth.error = getString(R.string.error_empty_expiration_date)
+                    if (vm.getExpirationYear().value.isEmpty())
+                        vb.ilExpirationYear.error = getString(R.string.error_empty_expiration_date)
+                }
+
+                AddItemEvent.ClearErrors -> {
+                    vb.ilExpirationMonth.error = null
+                    vb.ilExpirationYear.error = null
                 }
             }
         }

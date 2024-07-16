@@ -62,7 +62,6 @@ abstract class BaseViewModel(private val isNetworkConnectedUseCase: IsNetworkCon
                     onSuccess(it)
                 }
                 onFailure {
-                    //TODO: handle failure
                     showLoader(false)
                     if (it is Exceptions.EmptyResponse)
                         showEmptyView(true)
