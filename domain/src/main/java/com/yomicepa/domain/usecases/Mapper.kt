@@ -2,7 +2,7 @@ package com.yomicepa.domain.usecases
 
 import com.yomicepa.data.network.returnRequests.ReturnRequestContent
 import com.yomicepa.data.network.returnRequests.ReturnRequestResponse
-import com.yomicepa.data.network.returnRequests.addItem.AddItemResponse
+import com.yomicepa.data.network.returnRequests.items.ItemResponse
 import com.yomicepa.domain.models.Item
 import com.yomicepa.domain.models.ReturnRequest
 import java.text.SimpleDateFormat
@@ -26,7 +26,7 @@ object Mapper {
             serviceType, associatedWholesaler
         )
 
-    fun AddItemResponse.toItem(): Item =
+    fun ItemResponse.toItem(): Item =
         Item(
             id,
             ndc,

@@ -1,6 +1,6 @@
-package com.yomicepa.data.network.returnRequests.addItem
+package com.yomicepa.data.network.returnRequests.items
 
-class AddItemResponse(
+class ItemResponse(
     val id: Int,
     val ndc: String,
     val description:String,

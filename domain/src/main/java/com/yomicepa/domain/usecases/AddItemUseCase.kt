@@ -1,6 +1,6 @@
 package com.yomicepa.domain.usecases
 
-import com.yomicepa.data.network.returnRequests.addItem.AddItemBody
+import com.yomicepa.data.network.returnRequests.items.ItemBody
 import com.yomicepa.data.repositories.returnRequests.ReturnRequestsRepository
 import com.yomicepa.domain.models.Item
 import com.yomicepa.domain.usecases.Mapper.toItem
@@ -18,7 +18,7 @@ class AddItemUseCase @Inject constructor(private val returnRequestsRepository: R
         lotNumber: String
     ) : Result<Item> = returnRequestsRepository.addItem(
         requestId,
-        AddItemBody(
+        ItemBody(
             ndc,
             description,
             manufacturer,

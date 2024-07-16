@@ -15,12 +15,13 @@ class AddItemFragment : BaseFragment<FragmentAddItemBinding>(R.layout.fragment_a
     override fun setupObservers() {
         super.setupObservers()
         observe(vm.event) {
-            when(it) {
+            when (it) {
                 AddItemEvent.ItemAddedSuccessfully -> {
                     showSnackBar("Item Added Successfully")
                 }
+
                 is AddItemEvent.ItemsClicked -> {
-                    //navigate
+                    navigateTo(AddItemFragmentDirections.actionAddItemToItems(it.requestId))
                 }
             }
         }

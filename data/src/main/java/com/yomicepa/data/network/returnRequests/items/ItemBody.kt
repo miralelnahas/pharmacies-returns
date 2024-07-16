@@ -1,6 +1,6 @@
-package com.yomicepa.data.network.returnRequests.addItem
+package com.yomicepa.data.network.returnRequests.items
 
-data class AddItemBody(
+data class ItemBody(
     val ndc: String,
     val description:String,
     val manufacturer: String,

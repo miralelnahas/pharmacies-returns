@@ -11,7 +11,9 @@ import dagger.hilt.android.AndroidEntryPoint
 class ReturnRequestsFragment :
     BaseFragment<FragmentReturnRequestsBinding>(R.layout.fragment_return_requests) {
     override val vm: ReturnRequestsViewModel by viewModels()
-    val adapter = ReturnRequestAdapter()
+    val adapter = ReturnRequestAdapter {
+        navigateTo(ReturnRequestsFragmentDirections.actionReturnRequestsToItems(it.toInt()))
+    }
 
     override fun initViews() {
         super.initViews()

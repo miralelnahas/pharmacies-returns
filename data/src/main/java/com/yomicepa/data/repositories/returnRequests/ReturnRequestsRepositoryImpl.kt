@@ -4,9 +4,8 @@ import androidx.paging.PagingData
 import com.yomicepa.data.models.PagingResponse
 import com.yomicepa.data.network.returnRequests.CreateRequestResponse
 import com.yomicepa.data.network.returnRequests.ReturnRequestContent
-import com.yomicepa.data.network.returnRequests.ReturnRequestResponse
-import com.yomicepa.data.network.returnRequests.addItem.AddItemBody
-import com.yomicepa.data.network.returnRequests.addItem.AddItemResponse
+import com.yomicepa.data.network.returnRequests.items.ItemBody
+import com.yomicepa.data.network.returnRequests.items.ItemResponse
 import javax.inject.Inject
 
 class ReturnRequestsRepositoryImpl @Inject constructor(private val returnRequestsDataSource: ReturnRequestsDataSource) :
@@ -22,7 +21,20 @@ class ReturnRequestsRepositoryImpl @Inject constructor(private val returnRequest
 
     override suspend fun addItem(
         requestId: Int,
-        addItemBody: AddItemBody
-    ): Result<AddItemResponse> = returnRequestsDataSource.addItem(requestId, addItemBody)
+        itemBody: ItemBody
+    ): Result<ItemResponse> = returnRequestsDataSource.addItem(requestId, itemBody)
+
+    override suspend fun getItems(requestId: Int): Result<List<ItemResponse>> =
+        returnRequestsDataSource.getItems(requestId)
+
+    override suspend fun deleteItem(requestId: Int, itemId: Int): Result<Unit> =
+        returnRequestsDataSource.deleteItem(requestId, itemId)
+
+    override suspend fun editItem(
+        requestId: Int,
+        itemId: Int,
+        itemBody: ItemBody
+    ): Result<ItemResponse> =
+        returnRequestsDataSource.editItem(requestId, itemId, itemBody)
 
 }

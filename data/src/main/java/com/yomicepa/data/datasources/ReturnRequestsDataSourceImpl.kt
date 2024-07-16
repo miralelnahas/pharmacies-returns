@@ -11,8 +11,8 @@ import com.yomicepa.data.network.returnRequests.ReturnRequestBody
 import com.yomicepa.data.network.returnRequests.ReturnRequestContent
 import com.yomicepa.data.network.returnRequests.ReturnRequestsApi
 import com.yomicepa.data.network.returnRequests.ReturnRequestsPagingSource
-import com.yomicepa.data.network.returnRequests.addItem.AddItemBody
-import com.yomicepa.data.network.returnRequests.addItem.AddItemResponse
+import com.yomicepa.data.network.returnRequests.items.ItemBody
+import com.yomicepa.data.network.returnRequests.items.ItemResponse
 import com.yomicepa.data.repositories.returnRequests.ReturnRequestsDataSource
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -42,9 +42,27 @@ class ReturnRequestsDataSourceImpl @Inject constructor(retrofit: Retrofit) :
 
     override suspend fun addItem(
         requestId: Int,
-        addItemBody: AddItemBody
-    ): Result<AddItemResponse> =
+        itemBody: ItemBody
+    ): Result<ItemResponse> =
         apiCall {
-            returnRequestsApi.addItem(addItemBody, requestId)
+            returnRequestsApi.addItem(itemBody, requestId)
+        }
+
+    override suspend fun getItems(requestId: Int): Result<List<ItemResponse>> = apiCall {
+        returnRequestsApi.getItems(requestId)
+    }
+
+
+    override suspend fun deleteItem(requestId: Int, itemId: Int): Result<Unit> = apiCall {
+        returnRequestsApi.deleteItem(requestId, itemId)
+    }
+
+    override suspend fun editItem(
+        requestId: Int,
+        itemId: Int,
+        itemBody: ItemBody
+    ): Result<ItemResponse> =
+        apiCall {
+            returnRequestsApi.editItem(requestId, itemId, itemBody)
         }
 }

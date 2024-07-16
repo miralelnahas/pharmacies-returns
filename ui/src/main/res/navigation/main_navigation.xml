@@ -20,6 +20,10 @@
         <action
             android:id="@+id/action_requests_to_create_request"
             app:destination="@id/createRequestFragment" />
+
+        <action
+            android:id="@+id/action_return_requests_to_items"
+            app:destination="@id/itemsFragment" />
     </fragment>
 
     <fragment
@@ -35,6 +39,18 @@
         android:id="@+id/addItemFragment"
         android:name="com.yomicepa.ui.addItem.AddItemFragment"
         android:label="AddItemFragment">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_add_item_to_items"
+            app:destination="@id/itemsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/itemsFragment"
+        android:name="com.yomicepa.ui.items.ItemsFragment"
+        android:label="ItemsFragment">
         <argument
             android:name="id"
             app:argType="integer" />
