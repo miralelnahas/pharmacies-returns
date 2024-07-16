@@ -16,6 +16,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.yomicepa.ui.BR
 import com.yomicepa.ui.MainActivity
 import com.yomicepa.ui.R
+import com.yomicepa.ui.utils.observe
 
 abstract class BaseFragment<T : ViewDataBinding>(@LayoutRes private val contentLayoutId: Int) :
     Fragment() {
@@ -58,7 +59,11 @@ abstract class BaseFragment<T : ViewDataBinding>(@LayoutRes private val contentL
     }
 
     open fun setupObservers() {
-
+        observe(vm.baseEvent) {
+            when (it) {
+                BaseEvent.Back -> findNavController().popBackStack()
+            }
+        }
     }
 
     protected fun onBackPressed() {

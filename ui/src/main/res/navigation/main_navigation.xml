@@ -10,7 +10,9 @@
         android:label="LoginFragment">
         <action
             android:id="@+id/action_login_to_return_requests"
-            app:destination="@id/returnRequestsFragment" />
+            app:destination="@id/returnRequestsFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"  />
     </fragment>
 
     <fragment
@@ -20,13 +22,14 @@
         <action
             android:id="@+id/action_requests_to_create_request"
             app:destination="@id/createRequestFragment" />
-
         <action
             android:id="@+id/action_return_requests_to_items"
             app:destination="@id/itemsFragment" />
-
-        <action android:id="@+id/action_return_requests_to_login"
-            app:destination="@id/loginFragment"/>
+        <action
+            android:id="@+id/action_return_requests_to_login"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/returnRequestsFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -35,7 +38,9 @@
         android:label="CreateRequestFragment">
         <action
             android:id="@+id/action_create_request_to_add_item"
-            app:destination="@id/addItemFragment" />
+            app:destination="@id/addItemFragment"
+            app:popUpTo="@id/returnRequestsFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 
     <fragment
@@ -47,7 +52,9 @@
             app:argType="integer" />
         <action
             android:id="@+id/action_add_item_to_items"
-            app:destination="@id/itemsFragment" />
+            app:destination="@id/itemsFragment"
+            app:popUpTo="@id/returnRequestsFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 
     <fragment
