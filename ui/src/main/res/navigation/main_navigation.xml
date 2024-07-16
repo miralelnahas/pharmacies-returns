@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_return_requests_to_items"
             app:destination="@id/itemsFragment" />
+
+        <action android:id="@+id/action_return_requests_to_login"
+            app:destination="@id/loginFragment"/>
     </fragment>
 
     <fragment

@@ -43,7 +43,6 @@ class ItemsViewModel @Inject constructor(
         launchRequest({
             deleteItemUseCase(requestId, id)
         }, {
-            //todo: on deleting last item, code 204 returns in onFailure
             //TODO: handle errors
             getItems()
         })

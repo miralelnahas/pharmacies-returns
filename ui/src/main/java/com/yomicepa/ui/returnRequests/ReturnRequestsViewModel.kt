@@ -6,6 +6,7 @@ import androidx.paging.cachedIn
 import com.yomicepa.domain.models.ReturnRequest
 import com.yomicepa.domain.usecases.GetReturnRequestsUseCase
 import com.yomicepa.domain.usecases.IsNetworkConnectedUseCase
+import com.yomicepa.domain.usecases.LogoutUseCase
 import com.yomicepa.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -18,6 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ReturnRequestsViewModel @Inject constructor(
     private val getReturnRequestsUseCase: GetReturnRequestsUseCase,
+    private val logoutUseCase: LogoutUseCase,
     isNetworkConnectedUseCase: IsNetworkConnectedUseCase
 ) : BaseViewModel(isNetworkConnectedUseCase) {
 
@@ -43,6 +45,10 @@ class ReturnRequestsViewModel @Inject constructor(
 
     fun onCreateReturnRequestsClick() {
         sendEvent(_event, ReturnRequestsEvent.CreateClick)
+    }
+
+    fun onLogoutClick() {
+        launchRequest({ logoutUseCase() }, { sendEvent(_event, ReturnRequestsEvent.LogoutSuccess) })
     }
 
 }

@@ -48,6 +48,10 @@ class ReturnRequestsFragment :
                 ReturnRequestsEvent.CreateClick -> {
                     navigateTo(ReturnRequestsFragmentDirections.actionRequestsToCreateRequest())
                 }
+
+                ReturnRequestsEvent.LogoutSuccess -> {
+                    navigateTo(ReturnRequestsFragmentDirections.actionReturnRequestsToLogin())
+                }
             }
         }
 
