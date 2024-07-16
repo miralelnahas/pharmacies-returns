@@ -22,8 +22,23 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
         observe(vm.event) {
             when (it) {
                 LoginEvent.LoginSuccess -> navigateToReturnRequests()
+                LoginEvent.LoginFailed -> showSnackBar(getString(R.string.incorrect_username_or_password))
+                LoginEvent.HandleErrors -> handleEmptyErrors()
+                LoginEvent.ClearErrors -> clearErrors()
             }
         }
+    }
+
+    private fun handleEmptyErrors() {
+        if (vm.getUsername().isEmpty())
+            vb.ilUsername.error = getString(R.string.error_empty_username)
+        if (vm.getPassword().isEmpty())
+            vb.ilPassword.error = getString(R.string.error_empty_password)
+    }
+
+    private fun clearErrors() {
+        vb.ilUsername.error = null
+        vb.ilPassword.error = null
     }
 
     private fun navigateToReturnRequests() {

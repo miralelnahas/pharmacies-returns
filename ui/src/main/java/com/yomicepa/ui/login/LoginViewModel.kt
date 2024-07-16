@@ -14,7 +14,7 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
     private val isUserLoggedInUseCase: IsUserLoggedInUseCase,
-    isNetworkConnectedUseCase : IsNetworkConnectedUseCase
+    isNetworkConnectedUseCase: IsNetworkConnectedUseCase
 ) : BaseViewModel(isNetworkConnectedUseCase) {
     private val _event = Channel<LoginEvent>(Channel.BUFFERED)
     val event = _event.receiveAsFlow()
@@ -33,13 +33,18 @@ class LoginViewModel @Inject constructor(
     }
 
     fun onLoginClick() {
-        launchRequest({ loginUseCase(_username.value, _password.value) }, {
-            if (it)
-                sendEvent(_event, LoginEvent.LoginSuccess)
-            else {
-                //TODO: implement errors
-            }
-        })
+        sendEvent(_event, LoginEvent.ClearErrors)
+        if (getUsername().isNotEmpty() && getPassword().isNotEmpty()) {
+            launchRequest({ loginUseCase(_username.value, _password.value) }, {
+                if (it)
+                    sendEvent(_event, LoginEvent.LoginSuccess)
+                else {
+                    sendEvent(_event, LoginEvent.LoginFailed)
+                }
+            })
+        } else {
+            sendEvent(_event, LoginEvent.HandleErrors)
+        }
 
     }
 }

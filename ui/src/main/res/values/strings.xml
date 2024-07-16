@@ -32,6 +32,9 @@
     <string name="edit_item">Edit Item</string>
     <string name="update">Update</string>
     <string name="add_item_success">Item Added Successfully</string>
+    <string name="error_empty_username">Please provide a username</string>
+    <string name="error_empty_password">Please provide a password.</string>
+    <string name="incorrect_username_or_password">Incorrect username or password</string>
     <string-array name="service_type">
         <item>Express Service</item>
         <item>Full Service</item>
