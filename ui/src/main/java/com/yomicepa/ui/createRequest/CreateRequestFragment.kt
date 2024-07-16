@@ -24,7 +24,7 @@ class CreateRequestFragment :
         observe(vm.event) {
             when(it) {
                 is CreateRequestEvent.CreateRequestSuccess -> {
-                    //navigate
+                    navigateTo(CreateRequestFragmentDirections.actionCreateRequestToAddItem(it.requestId))
                 }
 
             }

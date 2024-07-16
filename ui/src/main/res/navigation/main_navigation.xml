@@ -25,6 +25,19 @@
     <fragment
         android:id="@+id/createRequestFragment"
         android:name="com.yomicepa.ui.createRequest.CreateRequestFragment"
-        android:label="CreateRequestFragment" />
+        android:label="CreateRequestFragment">
+        <action
+            android:id="@+id/action_create_request_to_add_item"
+            app:destination="@id/addItemFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addItemFragment"
+        android:name="com.yomicepa.ui.addItem.AddItemFragment"
+        android:label="AddItemFragment">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

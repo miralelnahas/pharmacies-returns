@@ -5,6 +5,8 @@ import com.yomicepa.data.models.PagingResponse
 import com.yomicepa.data.network.returnRequests.CreateRequestResponse
 import com.yomicepa.data.network.returnRequests.ReturnRequestContent
 import com.yomicepa.data.network.returnRequests.ReturnRequestResponse
+import com.yomicepa.data.network.returnRequests.addItem.AddItemBody
+import com.yomicepa.data.network.returnRequests.addItem.AddItemResponse
 import javax.inject.Inject
 
 class ReturnRequestsRepositoryImpl @Inject constructor(private val returnRequestsDataSource: ReturnRequestsDataSource) :
@@ -17,5 +19,10 @@ class ReturnRequestsRepositoryImpl @Inject constructor(private val returnRequest
         wholesaleId: Int
     ): Result<CreateRequestResponse> =
         returnRequestsDataSource.createReturnRequest(serviceType, wholesaleId)
+
+    override suspend fun addItem(
+        requestId: Int,
+        addItemBody: AddItemBody
+    ): Result<AddItemResponse> = returnRequestsDataSource.addItem(requestId, addItemBody)
 
 }
