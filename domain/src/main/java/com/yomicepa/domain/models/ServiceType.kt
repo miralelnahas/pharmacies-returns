@@ -1,6 +1,7 @@
 package com.yomicepa.domain.models
 
 enum class ServiceType(val title: String) {
+    NONE("None"),
     EXPRESS_SERVICE("Express Service"),
     FULL_SERVICE("Full Service");
 

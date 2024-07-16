@@ -22,12 +22,17 @@ class CreateRequestFragment :
     override fun setupObservers() {
         super.setupObservers()
         observe(vm.event) {
-            when(it) {
+            when (it) {
                 is CreateRequestEvent.CreateRequestSuccess -> {
                     navigateTo(CreateRequestFragmentDirections.actionCreateRequestToAddItem(it.requestId))
                 }
 
+                CreateRequestEvent.HandleServiceTypeError ->
+                    vb.ilServiceType.error = getString(R.string.error_empty_service_type)
             }
+        }
+        observe(vm.serviceType) {
+            vb.ilServiceType.error = null
         }
     }
 }

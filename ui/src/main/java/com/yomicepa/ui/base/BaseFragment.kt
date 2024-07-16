@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.yomicepa.ui.BR
 import com.yomicepa.ui.MainActivity
+import com.yomicepa.ui.R
 import com.yomicepa.ui.utils.observe
 
 abstract class BaseFragment<T : ViewDataBinding>(@LayoutRes private val contentLayoutId: Int) :
@@ -60,6 +61,7 @@ abstract class BaseFragment<T : ViewDataBinding>(@LayoutRes private val contentL
         observe(vm.baseEvent) {
             when (it) {
                 BaseEvent.Back -> findNavController().popBackStack()
+                BaseEvent.GeneralError -> showSnackBar(getString(R.string.error_general))
             }
         }
     }

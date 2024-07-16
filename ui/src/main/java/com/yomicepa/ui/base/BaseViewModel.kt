@@ -66,14 +66,8 @@ abstract class BaseViewModel(private val isNetworkConnectedUseCase: IsNetworkCon
                     showLoader(false)
                     if (it is Exceptions.EmptyResponse)
                         showEmptyView(true)
-//                    if(customFailureCallback == null) {
-//                        if (it is UserNotLoggedInException)
-//                            showEmptyView()
-//                        else
-//                            showErrorView()
-//                    } else {
-//                        customFailureCallback(it)
-//                    }
+                    else
+                        sendEvent(_baseEvent, BaseEvent.GeneralError)
                 }
             }
         }
