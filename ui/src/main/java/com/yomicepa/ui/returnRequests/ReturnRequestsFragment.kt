@@ -11,15 +11,19 @@ import dagger.hilt.android.AndroidEntryPoint
 class ReturnRequestsFragment :
     BaseFragment<FragmentReturnRequestsBinding>(R.layout.fragment_return_requests) {
     override val vm: ReturnRequestsViewModel by viewModels()
+    val adapter = ReturnRequestAdapter()
 
     override fun initViews() {
         super.initViews()
-        val adapter = ReturnRequestAdapter()
         vb.rvReturnRequests.adapter = adapter
+    }
 
+    override fun setupObservers() {
+        super.setupObservers()
         observe(vm.event) {
             when (it) {
-                ReturnRequestsEvent.CreateClick -> {//TODO: navigate
+                ReturnRequestsEvent.CreateClick -> {
+                    navigateTo(ReturnRequestsFragmentDirections.actionRequestsToCreateRequest())
                 }
             }
         }

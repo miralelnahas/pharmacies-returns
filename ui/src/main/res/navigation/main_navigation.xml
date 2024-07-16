@@ -7,14 +7,24 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.yomicepa.ui.login.LoginFragment"
-        android:label="LoginFragment" >
-        <action android:id="@+id/action_login_to_return_requests"
-            app:destination="@id/returnRequestsFragment"/>
+        android:label="LoginFragment">
+        <action
+            android:id="@+id/action_login_to_return_requests"
+            app:destination="@id/returnRequestsFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/returnRequestsFragment"
         android:name="com.yomicepa.ui.returnRequests.ReturnRequestsFragment"
-        android:label="ReturnRequestsFragment"/>
+        android:label="ReturnRequestsFragment">
+        <action
+            android:id="@+id/action_requests_to_create_request"
+            app:destination="@id/createRequestFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createRequestFragment"
+        android:name="com.yomicepa.ui.createRequest.CreateRequestFragment"
+        android:label="CreateRequestFragment" />
 
 </navigation>
