@@ -1,5 +1,6 @@
 package com.yomicepa.data.network
 
+import com.yomicepa.common.exceptions.Exceptions
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -15,8 +16,11 @@ object RetrofitClientExt {
             try {
                 response = call.invoke()
                 val body = response.body()
-                if (response.isSuccessful && body != null) {
-                    Result.success(body)
+                if (response.isSuccessful) {
+                    if (body != null)
+                        Result.success(body)
+                    else
+                        Result.failure(Exceptions.EmptyResponse())
                 } else {
                     Result.failure(Exception())
                 }

@@ -2,6 +2,7 @@ package com.yomicepa.ui.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.yomicepa.common.exceptions.Exceptions
 import com.yomicepa.domain.usecases.IsNetworkConnectedUseCase
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -13,18 +14,19 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-abstract class BaseViewModel(private val isNetworkConnectedUseCase : IsNetworkConnectedUseCase) : ViewModel() {
+abstract class BaseViewModel(private val isNetworkConnectedUseCase: IsNetworkConnectedUseCase) :
+    ViewModel() {
 
     private val _baseEvent = Channel<BaseEvent>(Channel.BUFFERED)
     val baseEvent = _baseEvent.receiveAsFlow()
 
-    protected val _showLoader = MutableStateFlow(false)
+    private val _showLoader = MutableStateFlow(false)
     val showLoader = _showLoader.asStateFlow()
 
-    protected val _showEmptyView = MutableStateFlow(false)
+    private val _showEmptyView = MutableStateFlow(false)
     val showEmptyView = _showEmptyView.asStateFlow()
 
-    protected val _showErrorView = MutableStateFlow(false)
+    private val _showErrorView = MutableStateFlow(false)
     val showErrorView = _showErrorView.asStateFlow()
 
     private val failedRequests = mutableListOf<() -> Unit>()
@@ -58,11 +60,12 @@ abstract class BaseViewModel(private val isNetworkConnectedUseCase : IsNetworkCo
                 onSuccess {
                     showLoader(false)
                     onSuccess(it)
-//                    hideErrorView()
                 }
                 onFailure {
                     //TODO: handle failure
                     showLoader(false)
+                    if (it is Exceptions.EmptyResponse)
+                        showEmptyView(true)
 //                    if(customFailureCallback == null) {
 //                        if (it is UserNotLoggedInException)
 //                            showEmptyView()
@@ -79,6 +82,7 @@ abstract class BaseViewModel(private val isNetworkConnectedUseCase : IsNetworkCo
     fun showEmptyView(show: Boolean) {
         _showEmptyView.value = show
     }
+
     fun showLoader(show: Boolean) {
         _showLoader.value = show
     }

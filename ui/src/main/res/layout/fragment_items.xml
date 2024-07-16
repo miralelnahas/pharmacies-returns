@@ -42,5 +42,8 @@
             android:layout_height="match_parent"
             app:vm="@{vm}" />
 
+        <include layout="@layout/layout_empty_items"
+            app:goneUnless="@{vm.showEmptyView}"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

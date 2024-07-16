@@ -61,3 +61,4 @@ datastore-preferences-core = { group = "androidx.datastore", name = "datastore-p
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp-version" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-version" }
+android-library = { id = "com.android.library", version.ref = "agp-version" }

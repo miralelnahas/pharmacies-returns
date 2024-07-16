@@ -30,13 +30,12 @@ class ReturnRequestsFragment :
                 } else {
                     vm.showLoader(false)
                     if (loadStates.refresh is LoadState.Error) {
-                        //TODO: handle empty views
+                        if (adapter.itemCount < 1) {
+                            vm.showEmptyView(true)
+                        } else {
+                            vm.showEmptyView(false)
+                        }
                     }
-//                    if ( adapter.itemCount < 1){
-//                        binding.clNoConsult.visibility = View.VISIBLE
-//                    }else{
-//                        binding.clNoConsult.visibility = View.GONE
-//                    }
                 }
             }
         }
